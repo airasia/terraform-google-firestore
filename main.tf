@@ -2,10 +2,6 @@ terraform {
   required_version = ">= 0.13.1" # see https://releases.hashicorp.com/terraform/
 }
 
-provider "google" {
-  version = ">= 3.13.0" # see https://github.com/terraform-providers/terraform-provider-google/releases
-}
-
 resource "google_project_service" "firestore_api" {
   service            = "firestore.googleapis.com"
   disable_on_destroy = false
