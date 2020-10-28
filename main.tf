@@ -20,6 +20,12 @@ resource "google_project_iam_member" "firestore_access_user_groups" {
   member = "group:${var.user_groups[count.index]}"
 }
 
+resource "google_project_iam_member" "datastore_owner_user_groups" {
+  count  = length(var.user_groups)
+  role   = "roles/datastore.owner" # see https://cloud.google.com/datastore/docs/quickstart#before-you-begin
+  member = "group:${var.user_groups[count.index]}"
+}
+
 # WORK IN PROGRESS.
 # Further development will follow.
 # Pending on popular discussion in https://github.com/terraform-providers/terraform-provider-google/issues/3657
