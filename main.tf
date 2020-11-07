@@ -16,14 +16,14 @@ resource "google_project_iam_custom_role" "firestore_access" {
 
 resource "google_project_iam_member" "firestore_access_user_groups" {
   for_each = toset(var.user_groups)
-  role   = google_project_iam_custom_role.firestore_access.id
-  member = "group:${each.value}"
+  role     = google_project_iam_custom_role.firestore_access.id
+  member   = "group:${each.value}"
 }
 
 resource "google_project_iam_member" "datastore_owner_user_groups" {
   for_each = toset(var.user_groups)
-  role   = "roles/datastore.owner" # see https://cloud.google.com/datastore/docs/quickstart#before-you-begin
-  member = "group:${each.value}"
+  role     = "roles/datastore.owner" # see https://cloud.google.com/datastore/docs/quickstart#before-you-begin
+  member   = "group:${each.value}"
 }
 
 # WORK IN PROGRESS.
